@@ -55,7 +55,17 @@
 
     .input-group {
       margin-bottom: 18px;
+      animation: slideIn 0.8s ease forwards;
     }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .input-group:nth-child(1) { animation-delay: 0.1s; }
+    .input-group:nth-child(2) { animation-delay: 0.25s; }
+    .input-group:nth-child(3) { animation-delay: 0.4s; }
 
     .input-group label {
       display: block;
@@ -94,6 +104,13 @@
       font-weight: 700;
       cursor: pointer;
       transition: 0.3s ease;
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
 
     button:hover {
@@ -108,35 +125,39 @@
       }
       h2 { font-size: 22px; }
     }
-  
-    /* New animations */
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(25px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #2ec4b6;
+      color: #fff;
+      padding: 15px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: all .4s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      z-index: 9999;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    .input-group {
-      animation: slideIn 0.8s ease forwards;
-    }
-
-    .input-group:nth-child(1) { animation-delay: 0.1s; }
-    .input-group:nth-child(2) { animation-delay: 0.25s; }
-    .input-group:nth-child(3) { animation-delay: 0.4s; }
-
-    button {
-      animation: pulse 2s infinite ease-in-out;
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
   </style>
 </head>
+
 <body>
+
   <div class="contact-container">
     <h2>Contact Us</h2>
+
     <form action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="c0bcf1c2-8ff5-4640-87be-6de61f64f9e5">
 
@@ -158,5 +179,42 @@
       <button type="submit">Send Message</button>
     </form>
   </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">Message sent successfully!</div>
+
+  <script>
+    const form = document.querySelector("form");
+    const toast = document.getElementById("toast");
+
+    form.addEvent = false;
+    if (!form.addEvent) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData
+        });
+
+        if (response.ok) {
+          showToast();
+          form.reset();
+        }
+      });
+
+      form.addEvent = true;
+    }
+
+    function showToast() {
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    }
+  </script>
+
 </body>
 </html>
