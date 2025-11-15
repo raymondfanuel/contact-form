@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibrant Contact Form</title>
+  <link rel="shortcut icon" href="form-svgrepo-com.svg" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ff6b6b, #f6416c, #4d9fef, #2ec4b6);
+      background-size: 400% 400%;
+      animation: bgMove 12s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .contact-container {
+      width: 100%;
+      max-width: 420px;
+      background: #ffffffee;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+      font-weight: 700;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #444;
+    }
+
+    .input-group input,
+    .input-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      background: #f2f2f2;
+      font-size: 15px;
+      transition: 0.3s ease;
+      resize: none;
+    }
+
+    .input-group input:focus,
+    .input-group textarea:focus {
+      border-color: #4d9fef;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(77,159,239,0.4);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff6b6b, #f6416c);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      opacity: 0.85;
+      transform: scale(1.03);
+    }
+
+    @media (max-width: 480px) {
+      .contact-container {
+        padding: 22px;
+        border-radius: 15px;
+      }
+      h2 { font-size: 22px; }
+    }
+  
+    /* New animations */
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .input-group {
+      animation: slideIn 0.8s ease forwards;
+    }
+
+    .input-group:nth-child(1) { animation-delay: 0.1s; }
+    .input-group:nth-child(2) { animation-delay: 0.25s; }
+    .input-group:nth-child(3) { animation-delay: 0.4s; }
+
+    button {
+      animation: pulse 2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="contact-container">
+    <h2>Contact Us</h2>
+    <form>
+      <div class="input-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your full name" required />
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required />
+      </div>
+
+      <div class="input-group">
+        <label for="message">Message</label>
+        <textarea id="message" rows="4" placeholder="Write your message" required></textarea>
+      </div>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</body>
+</html>
