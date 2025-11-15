@@ -128,27 +128,26 @@
 
     /* Toast Notification */
     .toast {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #2ec4b6;
-      color: #fff;
-      padding: 15px 22px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 15px;
-      opacity: 0;
-      transform: translateY(20px);
-      pointer-events: none;
-      transition: all .4s ease;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-      z-index: 9999;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    background: #2ec4b6;
+    color: #fff;
+    padding: 15px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .4s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    z-index: 9999;
     }
 
     .toast.show {
       opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
     }
   </style>
 </head>
